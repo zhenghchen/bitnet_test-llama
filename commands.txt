@@ -1,0 +1,23 @@
+      
+# --- Run this command in your terminal ---
+
+# Make sure you are in the directory containing preprocess_data.py
+# and have activated your Python environment (e.g., conda activate your_env)
+# Ensure you have logged in via `huggingface-cli login` if you haven't already.
+
+echo "Starting data preprocessing for FineWeb-Edu 10BT sample..."
+
+python preprocess_data.py \
+    --dataset_name HuggingFaceFW/fineweb-edu \
+    --split train --dataset_config sample-10BT \
+    --tokenizer_name meta-llama/Meta-Llama-3-8B \
+    --output_file ./fineweb-edu-10BT_tokenized.npy \
+    --text_column text \
+    --num_proc 8 # Adjust based on your available CPU cores for faster processing
+
+echo "Data preprocessing script finished. Check for ./fineweb-edu-10BT_tokenized.npy"
+
+# --- End of command ---
+
+# Run on HPC
+accelerate config 
